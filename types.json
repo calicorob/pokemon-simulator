@@ -1,0 +1,78 @@
+{
+	"Fire":
+	{
+		 "Resistance":["Grass","Bug","Steel","Ice","Fire"]
+		 ,"Weakness":["Ground","Rock","Water"]
+	
+
+
+	},
+
+	"Water":
+	{
+		 "Resistance":["Steel","Fire","Water","Ice"]
+		,"Weakness":["Grass","Electric"]
+		
+	},
+
+	"Grass":
+	{
+
+		 "Resistance":["Ground","Water","Grass","Electric"]
+		,"Weakness":["Flying","Poison","Bug","Fire","Ice"]
+		
+
+	},
+
+	"Poison":
+	{
+		 "Resistance":["Fighting","Poison","Grass"]
+		,"Weakness":["Ground","Psychic"]
+	
+	},
+	"Bug":
+	{
+
+		"Resistance":["Fighting","Ground","Grass"]
+		,"Weakness":["Flying","Rock","Fire"]
+		
+
+	},
+	"Electric":
+	{
+
+		 "Resistance":["Flying","Electric"]
+		,"Weakness":["Ground"]
+		
+
+
+	},
+	"Normal":
+	{
+
+		 
+		 "Weakness":["Fighting"]
+		,"Resistance":["N/A"]
+		
+
+
+	},
+	"Rock":
+	{
+
+		"Weakness":["Water","Grass","Fighting","Ground"]
+		,"Resistance":["Normal","Fire","Poison","Flying"]
+
+	},
+	"Ground":
+	{
+
+		 "Weakness":["Water","Grass","Ice"]
+		,"Resistance":["Poison","Rock"]
+
+	}
+	
+
+
+
+}

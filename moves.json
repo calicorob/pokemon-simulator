@@ -1,0 +1,127 @@
+{
+	"Tackle":
+	{
+		 "Type":"Normal"
+		,"Category":"Physical"
+		,"Power":40
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":35
+	},
+	"Tail Whip":
+	{
+		"Type":"Normal"
+		,"Category":"Status"
+		,"Affects":"Defense"
+		,"Stages":-1
+		,"Target":1
+		,"Power":null
+		,"Accuracy":1
+		,"PP":30
+
+
+	},
+	"Scratch":
+	{
+		"Type":"Normal"
+		,"Category":"Physical"
+		,"Power":40
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":35
+
+	},
+	"Growl":
+	{
+		"Type":"Normal"
+		,"Category":"Status"
+		,"Affects":"Attack"
+		,"Stages":-1
+		,"Target":1
+		,"Power":null
+		,"Accuracy":1
+		,"PP":40
+	},
+	"Water Gun":
+	{
+		"Type":"Water"
+		,"Category":"Physical"
+		,"Power":40
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":40
+	},
+
+	"Ember":
+	{
+
+		"Type":"Fire"
+		,"Category":"Special"
+		,"Power":40
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":40
+		,"Affliction":"Burn"
+		,"Chance":0.1
+
+
+	},
+
+	"Vine Whip":
+	{
+
+		"Type":"Grass"
+		,"Category":"Physical"
+		,"Power":45
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":25
+
+
+	},
+
+
+	"String Shot":
+	{
+
+		"Type":"Bug"
+		,"Category":"Status"
+		,"Affects":"Speed"
+		,"Stages":-1
+		,"Target":1
+		,"Power":null
+		,"Accuracy":0.95
+		,"PP":40
+
+	},
+	"Thundershock":
+	{
+
+		 "Type":"Electric"
+		,"Category":"Special"
+		,"Power":40
+		,"Accuracy":1
+		,"CritRatio":1
+		,"PP":30
+		,"Affliction":"Paralysis"
+		,"Chance":0.1
+
+
+	},
+	"Defense Curl":
+	{
+
+		
+		 "Type":"Normal"
+		,"Category":"Status"
+		,"Affects":"Defense"
+		,"Stages":1
+		,"Target":0
+		,"Power":null
+		,"Accuracy":1
+		,"PP":40
+
+	}
+	
+
+}
