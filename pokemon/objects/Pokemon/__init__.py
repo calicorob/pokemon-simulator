@@ -4,7 +4,15 @@ import json
 
 
 from pokemon.data import POKEMON as pokemon
+from pokemon.data import MOVES as moves
+from pokemon.data import TYPES as types
+
+from pokemon.data import TYPEMULTIPLIER as typeMultiplier
+from pokemon.data import STATSMULTIPLIER as statsMultiplier
+
+
 from pokemon.objects.Status import Normal
+from pokemon.objects.Moves import makeMove,ParalyzingMove,BurnMove
 
 
 class Pokemon(object):
