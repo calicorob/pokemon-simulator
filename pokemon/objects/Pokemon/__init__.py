@@ -4,6 +4,7 @@ import json
 
 
 from pokemon.data import POKEMON as pokemon
+from pokemon.objects.Status import Normal
 
 
 class Pokemon(object):
@@ -76,7 +77,7 @@ class Pokemon(object):
     
         self.battleStats['HP'] = self.stats['HP']
             
-        #self.status = Normal()
+        self.status = Normal()
             
             
     def missAttack(self,other,move):
