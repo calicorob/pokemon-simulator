@@ -1,0 +1,150 @@
+{
+  "Bulbasaur": {
+    "Type": [ "Grass", "Poison" ],
+    "Base Stats": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Speed": 45,
+      "Special": 65
+    }
+  },
+
+  "BulbasaurClone": {
+    "Type": [ "Grass", "Poison" ],
+    "Base Stats": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Speed": 45,
+      "Special": 65
+    }
+  },
+
+
+
+  "Charmander": {
+
+    "Type": [ "Fire" ],
+    "Base Stats": {
+      "HP": 39,
+      "Attack": 52,
+      "Defense": 43,
+      "Speed": 65,
+      "Special": 50
+    }
+  },
+
+  "Squirtle": {
+
+    "Type": [ "Water" ],
+    "Base Stats": {
+      "HP": 44,
+      "Attack": 48,
+      "Defense": 65,
+      "Speed": 43,
+      "Special": 50
+    }
+
+  },
+
+  "CharmanderClone": {
+
+    "Type": [ "Fire" ],
+    "Base Stats": {
+      "HP": 39,
+      "Attack": 52,
+      "Defense": 43,
+      "Speed": 65,
+      "Special": 50
+    }
+  },
+
+  "SquirtleClone": {
+
+    "Type": [ "Water" ],
+    "Base Stats": {
+      "HP": 44,
+      "Attack": 48,
+      "Defense": 65,
+      "Speed": 43,
+      "Special": 50
+    }
+
+  },
+
+
+  "Caterpie": {
+
+    "Type": [ "Bug" ],
+    "Base Stats": {
+      "HP": 45,
+      "Attack": 30,
+      "Defense": 35,
+      "Speed": 45,
+      "Special": 20
+    }
+
+  },
+
+  "Pikachu": {
+
+    "Type": [ "Electric" ],
+    "Base Stats": {
+      "HP": 35,
+      "Attack": 55,
+      "Defense": 30,
+      "Speed": 90,
+      "Special": 50
+    }
+  },
+
+  "Eevee": {
+
+    "Type": [ "Normal" ],
+    "Base Stats": {
+      "HP": 55,
+      "Attack": 55,
+      "Defense": 50,
+      "Speed": 55,
+      "Special": 65
+    }
+  },
+
+  "PikachuClone": {
+
+    "Type": [ "Electric" ],
+    "Base Stats": {
+      "HP": 35,
+      "Attack": 55,
+      "Defense": 30,
+      "Speed": 90,
+      "Special": 50
+    }
+  },
+
+  "EeveeClone": {
+
+    "Type": [ "Normal" ],
+    "Base Stats": {
+      "HP": 55,
+      "Attack": 55,
+      "Defense": 50,
+      "Speed": 55,
+      "Special": 65
+    }
+  },
+
+
+  "Geodude": {
+    "Type": [ "Rock", "Ground" ],
+    "Base Stats": {
+      "HP": 40,
+      "Attack": 80,
+      "Defense": 100,
+      "Speed": 20,
+      "Special": 30
+    }
+
+  }
+}
