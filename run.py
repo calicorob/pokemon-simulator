@@ -106,6 +106,13 @@ def test_battle()->None:
     
     print(battle([bulby,charmy]))
     
+def test_priority()->None:
+    ember = makeMove('Ember')
+    print(ember.priority)
+    
+    quickAttack = makeMove('Quick Attack')
+    print(quickAttack.priority)
+    
     
 def test_battles(runs:int=10000)->None:
     pokemon1 = ('Pikachu',5,['Thundershock','Growl'])
@@ -141,6 +148,8 @@ if __name__ == '__main__':
     test_battle()
     
     test_battles()
+    
+    test_priority()
     
    
     
