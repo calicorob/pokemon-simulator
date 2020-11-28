@@ -131,7 +131,18 @@
 		,"PP":40
         ,"Priority":0
 
-	}
+	},
+    "Quick Attack":
+    {
+         "Type":"Normal"
+        ,"Category":"Physical"
+        ,"Power":40
+        ,"Accuracy":1
+        ,"PP":30
+        ,"Priority":1
+        
+        
+    }
 	
 
 }
