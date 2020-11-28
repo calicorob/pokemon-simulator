@@ -92,10 +92,31 @@ def paralysis_movement(runs:int=10000)->None:
     for i in range(runs):
         able.append(bulby.status.canMove())
     print(sum(able)/len(able))
+    
+    
+def test_battle()->None:
+    bulby = Pokemon('Squirtle',5)
+    bulby.setMove('Tackle')
+    bulby.setMove('Tail Whip')
+
+
+    charmy = Pokemon('Bulbasaur',5)
+    charmy.setMove('Scratch')
+    charmy.setMove('Growl')
+    
+    print(battle([bulby,charmy]))
+    
+    
+def test_battles(runs:int=10000)->None:
+    pokemon1 = ('Pikachu',5,['Thundershock','Growl'])
+    pokemon2 = ('Eevee',5,['Tackle','Tail Whip'])
+    pokemons = (pokemon1,pokemon2)
+    print(battles(pokemons,runs))
 
 if __name__ == '__main__':
     
     ## hit rate testing
+    ## Expected ~0.004
     hit_rate_testing()
 
     ## paralysis testing
@@ -113,32 +134,28 @@ if __name__ == '__main__':
     paralysis_status_affliction()
     status_affliction()
     
+    ## Expected ~0.75
+    paralysis_movement()
+    
+    
+    test_battle()
+    
+    test_battles()
+    
    
     
     
     
     
-    ## Expected ~0.75
+  
     
     
     
     
-    bulby = Pokemon('Squirtle',5)
-    bulby.setMove('Tackle')
-    bulby.setMove('Tail Whip')
-
-
-    charmy = Pokemon('Bulbasaur',5)
-    charmy.setMove('Scratch')
-    charmy.setMove('Growl')
-    
-    print(battle([bulby,charmy]))
     
     
-    pokemon1 = ('Pikachu',5,['Thundershock','Growl'])
-    pokemon2 = ('Eevee',5,['Tackle','Tail Whip'])
-    pokemons = (pokemon1,pokemon2)
-    print(battles(pokemons,10000))
+    
+    
 
     
     plt.show()
