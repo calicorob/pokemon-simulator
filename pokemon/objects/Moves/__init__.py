@@ -14,6 +14,7 @@ class Move(object):
         self.category = moves[name]['Category']
         self.accuracy = moves[name]['Accuracy']
         self.PP = moves[name]['PP']
+        self.priority = moves[name]['Priority']
         
         
 class NormalMove(Move):
