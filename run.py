@@ -2,7 +2,7 @@ from pokemon import Pokemon,makeMove,Paralysis,battle,battles
 import matplotlib.pyplot as plt
 
 
-def hit_rate_testing(runs:int=2000,attacks:int=1000,verbose:bool=True):
+def hit_rate_testing(runs:int=2000,attacks:int=1000,verbose:bool=True)->None:
     bulby = Pokemon('Bulbasaur',5)
     bulby.setMove('Tackle')
     
@@ -31,7 +31,23 @@ def hit_rate_testing(runs:int=2000,attacks:int=1000,verbose:bool=True):
        
     print(sum(samples)/len(samples))
 
-
+    
+    
+def paralysis_testing(runs:int=10000)->None:
+    thundershock = makeMove('Thundershock')
+    para = []
+    for i in range(runs):
+        para.append(thundershock.doesParalyze())
+    print(sum(para)/len(para))
+    
+    
+def burn_testing(runs:int=10000)->None:
+    
+    ember = makeMove('Ember')
+    burn = []
+    for i in range(runs):
+        burn.append(ember.doesBurn())
+    print(sum(burn)/len(burn))
 
 if __name__ == '__main__':
     bulby = Pokemon('Bulbasaur',5)
@@ -47,28 +63,16 @@ if __name__ == '__main__':
     
     hit_rate_testing()
 
-
-
-    
-    
     ## paralysis testing
     # Expected ~0.1
+    paralysis_testing()
     
-    thundershock = makeMove('Thundershock')
-    para = []
-    for i in range(10000):
-        para.append(thundershock.doesParalyze())
-    print(sum(para)/len(para))
     
     ## burn testing
     ## Expected ~0.1
     
     
-    ember = makeMove('Ember')
-    burn = []
-    for i in range(10000):
-        burn.append(ember.doesBurn())
-    print(sum(burn)/len(burn))
+    
     
     
     print(bulby.battleStats)
