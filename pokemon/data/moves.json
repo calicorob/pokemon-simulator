@@ -7,6 +7,7 @@
 		,"Accuracy":1
 		,"CritRatio":1
 		,"PP":35
+        ,"Priority":0
 	},
 	"Tail Whip":
 	{
@@ -18,6 +19,7 @@
 		,"Power":null
 		,"Accuracy":1
 		,"PP":30
+        ,"Priority":0
 
 
 	},
@@ -29,6 +31,7 @@
 		,"Accuracy":1
 		,"CritRatio":1
 		,"PP":35
+        ,"Priority":0
 
 	},
 	"Growl":
@@ -41,6 +44,7 @@
 		,"Power":null
 		,"Accuracy":1
 		,"PP":40
+        ,"Priority":0
 	},
 	"Water Gun":
 	{
@@ -50,6 +54,7 @@
 		,"Accuracy":1
 		,"CritRatio":1
 		,"PP":40
+        ,"Priority":0
 	},
 
 	"Ember":
@@ -63,6 +68,7 @@
 		,"PP":40
 		,"Affliction":"Burn"
 		,"Chance":0.1
+        ,"Priority":0
 
 
 	},
@@ -76,6 +82,7 @@
 		,"Accuracy":1
 		,"CritRatio":1
 		,"PP":25
+        ,"Priority":0
 
 
 	},
@@ -92,6 +99,7 @@
 		,"Power":null
 		,"Accuracy":0.95
 		,"PP":40
+        ,"Priority":0
 
 	},
 	"Thundershock":
@@ -105,6 +113,7 @@
 		,"PP":30
 		,"Affliction":"Paralysis"
 		,"Chance":0.1
+        ,"Priority":0
 
 
 	},
@@ -120,6 +129,7 @@
 		,"Power":null
 		,"Accuracy":1
 		,"PP":40
+        ,"Priority":0
 
 	}
 	
