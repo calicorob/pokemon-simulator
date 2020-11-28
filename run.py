@@ -1,6 +1,8 @@
 from pokemon import Pokemon,makeMove,Paralysis,battle,battles
 import matplotlib.pyplot as plt
 
+import math
+
 
 def hit_rate_testing(runs:int=2000,attacks:int=1000,verbose:bool=True)->None:
     bulby = Pokemon('Bulbasaur',5)
@@ -48,8 +50,28 @@ def burn_testing(runs:int=10000)->None:
     for i in range(runs):
         burn.append(ember.doesBurn())
     print(sum(burn)/len(burn))
-
-if __name__ == '__main__':
+    
+    
+def burn_status_affliction()->None:
+    bulby = Pokemon('Bulbasaur',5)
+    ember = makeMove('Ember')
+    atk = bulby.battleStats['Attack'][0]
+    ember.burn(bulby)
+    
+    assert math.floor(atk/2) == bulby.battleStats['Attack'][0]
+    assert bulby.battleStats['Attack'][1] == 0
+    
+def paralysis_status_affliction()->None:
+    charmy = Pokemon('Charmander',5)
+    thundershock = makeMove('Thundershock')
+    
+    spd = charmy.battleStats['Speed'][0]
+    thundershock.paralyze(charmy)
+    
+    assert math.floor(spd*0.75) == charmy.battleStats['Speed'][0]
+    assert charmy.battleStats['Speed'][1] == 0
+    
+def status_affliction()->None:
     bulby = Pokemon('Bulbasaur',5)
     bulby.setMove('Tackle')
     
@@ -58,45 +80,47 @@ if __name__ == '__main__':
     charmy.setMove('Growl')
     
     
+    charmy.attack(bulby,'Growl')
+    
+    assert bulby.battleStats['Attack'][1] == -1
+    
+    
+def paralysis_movement(runs:int=10000)->None:
+    able = []
+    bulby = Pokemon('Bulbasaur')
+    bulby.status = Paralysis(bulby)
+    for i in range(runs):
+        able.append(bulby.status.canMove())
+    print(sum(able)/len(able))
+
+if __name__ == '__main__':
     
     ## hit rate testing
-    
     hit_rate_testing()
 
     ## paralysis testing
-    # Expected ~0.1
+    ## Expected ~0.1
     paralysis_testing()
     
     
     ## burn testing
     ## Expected ~0.1
     
+    burn_testing()
     
     
+    burn_status_affliction()
+    paralysis_status_affliction()
+    status_affliction()
+    
+   
     
     
-    print(bulby.battleStats)
-    ember.burn(bulby)
-    print(bulby.battleStats)
-    
-    print(charmy.battleStats)
-    thundershock.paralyze(charmy)
-    print(charmy.battleStats)
-    
-    
-    charmy.attack(bulby,'Growl')
-    
-    print(bulby.battleStats)
     
     
     ## Expected ~0.75
     
-    able = []
-    bulby = Pokemon('Bulbasaur')
-    bulby.status = Paralysis(bulby)
-    for i in range(100000):
-        able.append(bulby.status.canMove())
-    print(sum(able)/len(able))
+    
     
     
     bulby = Pokemon('Squirtle',5)
