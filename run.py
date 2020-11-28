@@ -2,6 +2,35 @@ from pokemon import Pokemon,makeMove,Paralysis,battle,battles
 import matplotlib.pyplot as plt
 
 
+def hit_rate_testing(runs:int=2000,attacks:int=1000,verbose:bool=True):
+    bulby = Pokemon('Bulbasaur',5)
+    bulby.setMove('Tackle')
+    
+    charmy = Pokemon('Charmander',5)
+    charmy.setMove('Ember')
+    charmy.setMove('Growl')
+    
+    samples = []
+    
+    for i in range(runs):
+        hits = []
+        for j in range(attacks):
+            hits.append(bulby.missAttack(charmy,bulby.moves['Tackle']))
+            
+        samples.append(sum(hits)/len(hits))
+        
+        
+    if verbose:
+        fig,ax = plt.subplots(1)
+        ax.hist(samples)
+
+        ax.set_ylabel('Frequency',fontweight='bold',fontsize=15)
+        ax.set_xlabel('Miss frequency',fontweight='bold',fontsize=15)
+        ax.set_title(f'Miss frequency average: {round(sum(samples)/len(samples),5)}',fontweight='bold',fontsize=15)    
+        
+       
+    print(sum(samples)/len(samples))
+
 
 
 if __name__ == '__main__':
@@ -16,21 +45,9 @@ if __name__ == '__main__':
     
     ## hit rate testing
     
-    samples = []
-    for i in range(2000):
-        hits = []
-        for i in range(1000):
-            hits.append(bulby.missAttack(charmy,bulby.moves['Tackle']))
-    
-     
-        samples.append(sum(hits)/len(hits))
+    hit_rate_testing()
 
-    fig,ax = plt.subplots(1)
-    ax.hist(samples)
 
-    ax.set_ylabel('Frequency',fontweight='bold',fontsize=15)
-    ax.set_xlabel('Miss frequency',fontweight='bold',fontsize=15)
-    ax.set_title(f'Miss frequency average: {round(sum(samples)/len(samples),5)}',fontweight='bold',fontsize=15)
 
     
     
