@@ -86,6 +86,27 @@
     }
 
   },
+    
+    
+    
+    
+    "Weedle":{
+      
+        "Type":['Bug','Poison']
+        ,"Base Stats":{
+             "HP":40
+            ,"Attack":35
+            ,"Defense":30
+            ,"Special":20
+            ,"Speed":50
+         
+    
+        }
+        
+        
+    },
+    
+
 
   "Pikachu": {
 

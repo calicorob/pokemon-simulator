@@ -143,7 +143,25 @@
         ,"CritRatio":1
         
         
+    },
+    "Poison Sting":
+    {
+         "Type":"Poison"
+        ,"Category":"Physical"
+        ,"Power":15
+        ,"Accuracy":1
+        ,"PP":35
+        ,"Priority":0
+        ,"CritRatio":1
+        ,"Affliction":"Poison"
+        ,"Chance":0.2
+            
+        
+        
     }
+    
+    
+    
 	
 
 }
