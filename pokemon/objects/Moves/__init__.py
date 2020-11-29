@@ -2,7 +2,7 @@ import random
 import math
 
 from pokemon.data import MOVES as moves
-from pokemon.objects.Status import Paralysis, Burn
+from pokemon.objects.Status import Paralysis, Burn,Poison
 
 
 
@@ -83,16 +83,15 @@ class PoisonMove(Move):
         self.critRatio = moves[name]['CritRatio']
         self.chance = moves[name]['Chance']
     def doesPoison(self):
-        threshold = self.chane
+        threshold = self.chance
         rand = random.random()
-        
         
         if rand > threshold:
             return False ## doesn't poison
         else:
             return True
         
-    def posion(self,pokemon):
+    def poison(self,pokemon):
         pokemon.status = Poison(pokemon)
         
 

@@ -119,6 +119,17 @@ def test_battles(runs:int=10000)->None:
     pokemon2 = ('Eevee',5,['Tackle','Tail Whip'])
     pokemons = (pokemon1,pokemon2)
     print(battles(pokemons,runs))
+    
+def test_battles(runs:int=10000)->None:
+    pokemon1 = ('Weedle',5,['Poison Sting','String Shot'])
+    pokemon2 = ('Eevee',5,['Tackle','Tail Whip'])
+    pokemons = (pokemon1,pokemon2)
+    print(battles(pokemons,runs))
+    
+    
+    
+    
+    
 
 if __name__ == '__main__':
     

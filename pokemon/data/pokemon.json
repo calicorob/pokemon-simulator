@@ -87,12 +87,10 @@
 
   },
     
-    
-    
-    
+   
     "Weedle":{
       
-        "Type":['Bug','Poison']
+        "Type":["Bug","Poison"]
         ,"Base Stats":{
              "HP":40
             ,"Attack":35

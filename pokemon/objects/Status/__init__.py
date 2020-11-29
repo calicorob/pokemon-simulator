@@ -16,11 +16,12 @@ class Status(object):
 class Poison(Status):
     def __init__(self,pokemon):
         self.damage = math.floor(pokemon.stats['HP'] / 16)
+        self.threshold = 1
         if self.damage < 1:
             self.damage = 1
         
     def doDamage(self,pokemon):
-        print(pokemon.name + 'took poison damage')
+        #print(pokemon.name + 'took poison damage')
         pokemon.receiveDamage(self.damage)
         
 class Paralysis(Status):

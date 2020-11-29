@@ -227,7 +227,7 @@ class Pokemon(object):
                     elif isinstance(move,PoisonMove):
                         if move.doesPoison() and isinstance(other.status,Normal):
                             move.poison(other)
-                            print(other.name + ' was poisoned')
+                            #print(other.name + ' was poisoned')
                     
                     
                     
