@@ -117,6 +117,8 @@ def makeMove(name):
             return BurnMove(name)
         elif aff == 'Paralysis':
             return ParalyzingMove(name)
+        elif aff == 'Poison':
+            return PoisonMove(name)
         
     else:
         
