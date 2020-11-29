@@ -12,7 +12,7 @@ from pokemon.data import STATSMULTIPLIER as statsMultiplier
 
 
 from pokemon.objects.Status import Normal
-from pokemon.objects.Moves import makeMove,ParalyzingMove,BurnMove
+from pokemon.objects.Moves import makeMove,ParalyzingMove,BurnMove,PoisonMove
 
 
 class Pokemon(object):
@@ -223,6 +223,14 @@ class Pokemon(object):
                         if move.doesBurn() and isinstance(other.status,Normal) and 'Fire' not in other.type:
                             move.burn(other)
                             #print(other.name + ' was burned')
+                            
+                    elif isinstance(move,PoisonMove):
+                        if move.doesPoison() and isinstance(other.status,Normal):
+                            move.poison(other)
+                            # print(other.name _ ' was poisoned')
+                    
+                    
+                    
                 else:
                     #print(self.name + ' missed')
                     pass
