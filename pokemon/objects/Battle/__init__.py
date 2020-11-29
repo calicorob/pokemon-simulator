@@ -27,11 +27,128 @@ def battles(pokemons,numBattles=100):
         
     return score
 
-def battle(pokemons,verbose=False):
-    """
-        pokemons: list of pokemon to do battle
+
+def battle(pokemons):
+    for pokemon in pokemons:
+        pokemon.setBattleStats()
+        
+    pokemon_one = pokemons[0]
+    pokemon_two = pokemons[1]
     
-    """
+    health = {pokemon_one:[pokemon_one.battleStats['HP']],pokemon_two:[pokemon_two.battleStats['HP']]}
+    
+    while True:
+        moves = pick_move(pokemons)
+        order = pick_order(pokemons,moves)
+        
+        first_pokemon = order.pop()
+        second_pokemon = order.pop()
+        
+        
+        first_pokemon.attack(second_pokemon,moves[first_pokemon].name) ## this is stupid as hell, should pass the move object, not the move name
+        
+        
+        if is_battle_over(pokemons):
+                health[pokemon_one].append(pokemon_one.battleStats['HP'])
+                health[pokemon_two].append(pokemon_two.battleStats['HP'])
+                break
+                
+        if isinstance(first_pokemon.status,(Poison,Burn)):
+            first_pokemon.status.doDamage(first_pokemon)
+            
+        if is_battle_over(pokemons):
+                health[pokemon_one].append(pokemon_one.battleStats['HP'])
+                health[pokemon_two].append(pokemon_two.battleStats['HP'])
+                break
+                
+        second_pokemon.attack(first_pokemon,moves[second_pokemon].name) ## this is stupid as hell, should pass the move object, not the move name
+        
+        
+        if is_battle_over(pokemons):
+                health[pokemon_one].append(pokemon_one.battleStats['HP'])
+                health[pokemon_two].append(pokemon_two.battleStats['HP'])
+                break
+                
+        if isinstance(second_pokemon.status,(Poison,Burn)):
+            second_pokemon.status.doDamage(first_pokemon)
+            
+        if is_battle_over(pokemons):
+                health[pokemon_one].append(pokemon_one.battleStats['HP'])
+                health[pokemon_two].append(pokemon_two.battleStats['HP'])
+                break
+                
+        health[pokemon_one].append(pokemon_one.battleStats['HP'])
+        health[pokemon_two].append(pokemon_two.battleStats['HP'])
+                
+    if health[pokemon_one][-1] > health[pokemon_two][-1]:
+        
+        return pokemon_one.name
+    else:
+        return pokemon_two.name    
+    
+        
+
+
+
+
+def pick_move(pokemons):
+    p_one = pokemons[0]
+    p_two = pokemons[1]
+    
+    return {
+        
+         p_one:p_one.moves[random.choice(list(p_one.moves))]
+        ,p_two:p_two.moves[random.choice(list(p_two.moves))]
+        
+        
+    }
+
+
+def pick_order(pokemons,attacks):
+    p_one = pokemons[0]
+    p_two = pokemons[1]
+    
+    
+    p_one_attack = attacks[p_one]
+    p_two_attack = attacks[p_two]
+
+    
+    #print(p_one_attack.priority,p_two_attack.priority)
+    if p_one_attack.priority == p_two_attack.priority:
+   
+        #print(p_one.getSpeed(),p_two.getSpeed())
+        if p_one.getSpeed() != p_two.getSpeed():
+       
+            order = sorted(pokemons,key=lambda x: x.getSpeed())
+    
+        else:
+            #print('speed tie')
+            name = random.choice([pokemon.name for pokemon in pokemons])
+            
+            if name == p_one.name:
+                order = [p_two,p_one]
+            else:
+                order = [p_one,p_two]
+            
+   
+            
+    elif p_one_attack.priority > p_two_attack.priority:
+        order = [p_two,p_one]
+    else:
+        order = [p_one,p_two]
+        
+    return order
+    
+def is_battle_over(pokemons):
+    for pokemon in pokemons:
+        if pokemon.battleStats['HP'] <= 0:
+            return True
+    return False    
+    
+    
+"""
+def battle(pokemons,verbose=False):
+
     
     
     def getOrder(pokemons):
@@ -105,6 +222,7 @@ def battle(pokemons,verbose=False):
     else:
         return pokemons[1].name
     #return health      
-            
+     """
+
     
     
