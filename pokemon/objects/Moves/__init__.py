@@ -76,6 +76,25 @@ class BurnMove(Move):
     def burn(self,pokemon):
         pokemon.status = Burn(pokemon)
         
+class PoisonMove(Move):
+    def __init__(self,name):
+        super().__init__(name)
+        self.power = moves[name]['Power']
+        self.critRatio = moves[name]['CritRatio']
+        self.chance = moves[name]['Chance']
+    def doesPoison(self):
+        threshold = self.chane
+        rand = random.random()
+        
+        
+        if rand > threshold:
+            return False ## doesn't poison
+        else:
+            return True
+        
+    def posion(self,pokemon):
+        pokemon.status = Poison(pokemon)
+        
 
 class StatusMove(Move):
     def __init__(self,name):
