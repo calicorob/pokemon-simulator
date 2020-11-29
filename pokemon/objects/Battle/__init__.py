@@ -70,7 +70,7 @@ def battle(pokemons):
                 break
                 
         if isinstance(second_pokemon.status,(Poison,Burn)):
-            second_pokemon.status.doDamage(first_pokemon)
+            second_pokemon.status.doDamage(second_pokemon)
             
         if is_battle_over(pokemons):
                 health[pokemon_one].append(pokemon_one.battleStats['HP'])

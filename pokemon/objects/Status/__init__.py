@@ -20,6 +20,7 @@ class Poison(Status):
             self.damage = 1
         
     def doDamage(self,pokemon):
+        print(pokemon.name + 'took poison damage')
         pokemon.receiveDamage(self.damage)
         
 class Paralysis(Status):
