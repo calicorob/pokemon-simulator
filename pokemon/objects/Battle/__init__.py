@@ -79,6 +79,9 @@ def battle(pokemons):
                 
         health[pokemon_one].append(pokemon_one.battleStats['HP'])
         health[pokemon_two].append(pokemon_two.battleStats['HP'])
+        
+        
+    assert health[pokemon_one][-1] != health[pokemon_two][-1]
                 
     if health[pokemon_one][-1] > health[pokemon_two][-1]:
         
