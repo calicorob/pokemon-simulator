@@ -5,7 +5,7 @@ from pokemon.objects.Status import Poison,Burn
 from pokemon.objects.Pokemon import Pokemon
 
 
-def battles(pokemons,numBattles=100):
+def battles(pokemons,numBattles=100,normalize=True):
     score = {pokemons[0][0]:0,pokemons[1][0]:0}
     
     for i in range(numBattles):
@@ -19,11 +19,11 @@ def battles(pokemons,numBattles=100):
         winner = battle(pokemon)
         score[winner] += 1
         
-        
-    for key in score.keys():
-        p = score[key]/numBattles
-        score[key] = [p,math.sqrt(p*(1-p)/numBattles)]
-        
+    if normalize:    
+        for key in score.keys():
+            p = score[key]/numBattles
+            score[key] = [p,math.sqrt(p*(1-p)/numBattles)]
+
         
     return score
 
