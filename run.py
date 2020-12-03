@@ -120,11 +120,11 @@ def test_battles(runs:int=10000)->None:
     pokemons = (pokemon1,pokemon2)
     print(battles(pokemons,runs))
     
-def test_battles(runs:int=10000)->None:
+def test_battles(runs:int=10000,normalize=True)->None:
     pokemon1 = ('Weedle',5,['Poison Sting','String Shot'])
     pokemon2 = ('Eevee',5,['Tackle','Tail Whip'])
     pokemons = (pokemon1,pokemon2)
-    print(battles(pokemons,runs))
+    print(battles(pokemons,runs,normalize=normalize))
     
     
     
@@ -161,7 +161,8 @@ if __name__ == '__main__':
     
     test_battle()
     
-    test_battles()
+    test_battles(normalize=True)
+    test_battles(normalize=False)
     
     #test_priority()
     
