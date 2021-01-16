@@ -1,3 +1,10 @@
+"""
+    Module which contains Pokemon class definition
+    Author: Robert Currie
+    Date: January 16, 2021
+
+"""
+
 ## library imports
 
 import math ## math operations
