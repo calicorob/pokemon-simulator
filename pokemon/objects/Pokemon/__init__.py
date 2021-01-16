@@ -225,36 +225,49 @@ class Pokemon(object):
         else:
             return False
 
-    def calculateTypeModifier(self,other,move):
+    def calculate_type_modifier(self,other,move):
         """
             Calculate type modifier of an attack (super effective, not every effective)
 
 
             Args:
                 other (Pokemon): Instance of the Pokemon class that is getting attacked
-
+                move (Move): Instance of the Move class that is being used to attack other
             Returns:
+                float, damage modifier of type weakness / resistance
 
 
         """
+        ## counter, used to keep track of super effective and double super effective moves
         count = 0
-        oppType = other.type
-        moveType = move.type
 
-        for opType in oppType:
-            if moveType in types[opType]['Resistance']:
+        opp_type = other.type
+        move_type = move.type
+
+        ## loop through the attack types
+        for op_type in opp_type:
+            ## if the move type is found in the other pokemon's resistances, decrease counter by 1
+            if move_type in types[op_type]['Resistance']:
                 count -=1
-
-            if moveType in types[opType]['Weakness']:
+            ## if the move type is found in the other pokemon's weaknesses, increase counter by 1
+            if move_type in types[op_type]['Weakness']:
                 count +=1
 
+        ## return type multiplier
         return TYPEMULTIPLIER[count]
 
+    def calculate_modifier(self,other,move):
+        """
+            Calculates damage modifier of an attack
 
+            Args:
+                other (Pokemon): Instance of the Pokemon class being attacked
+                move (Move): Instance of the Move class being used to attack other
 
+            Returns:
+                float, damage modifier of the pokemon being attacked
 
-    def calculateModifier(self,other,move):
-
+        """
 
         ## NON GEN1 FACTORS
         targets = 1
@@ -262,127 +275,204 @@ class Pokemon(object):
         badge = 1
         critical = 1
 
+        ## if the attack is the same type as the pokemon attacking, it gets a STAB (same type attack bonus)
         if move.type in self.type:
             stab = 1.5
         else:
             stab = 1
 
-        typeM = self.calculateTypeModifier(other,move)
+        ## calculates type modifier
+        type_modifier = self.calculate_type_modifier(other,move)
 
+        ## RNG
         rand = random.randint(217,255) / 255
 
-
-
+        ## return modifier
         return targets*weather*badge*critical*stab*typeM*rand
 
-    def calculateDamage(self,other,move):
+    def calculate_damage(self,other,move):
+        """
+            Calculates the damage of an attack against an opponent Pokemon
 
-        isCrit = self.is_crit_hit(move)
+            Args:
+                other (Pokemon): Instance of the Pokemon class being attacked
+                move (Move): Instance of the Move class being used to attack
 
-        if isCrit:
+            Returns:
+                float, damage done to other
+
+        """
+
+        ## is the attack a critical hit
+        is_crit = self.is_crit_hit(move)
+
+        ## if the move is a critical hit, increase damage done by 2, by pass all stat multiplers
+        if is_crit:
             level = self.level*2
             #print('Critical Hit')
 
-
+            ## if the move is a physical attack, get the attack and defense stat of the attacking and defending pokemon, respectively
             if move.category == 'Physical':
                 attack = self.stats['Attack']
                 defense = other.stats['Defense']
-
+            ## if the move is a special attack, get the special of the attacking and defending pokemon
             else:
                 attack = self.stats['Special']
                 defense = other.stats['Special']
 
-
+        ## attack is not a critical hit
         else:
             level = self.level
 
+            ## if the move is a physical attack, get the attack and defense stat of the attacking and defending pokemon, respectively
             if move.category == 'Physical':
                 attack = self.battle_stats['Attack'][0] * STATSMULTIPLIER[self.battle_stats['Attack'][1]]
                 defense = other.battle_stats['Defense'][0] * STATSMULTIPLIER[other.battle_stats['Defense'][1]]
+            ## if the move is a special attack, get the special of the attacking and defending pokemon
             else:
                 attack = self.battle_stats['Special'][0] * STATSMULTIPLIER[self.battle_stats['Special'][1]]
                 defense = other.battle_stats['Special'][0] * STATSMULTIPLIER[other.battle_stats['Special'][1]]
 
 
-
-        modifier =  self.calculateModifier(other,move)
+        ## calculate the RNG multiplier
+        modifier =  self.calculate_modifier(other,move)
+        ## get the move power
         power = move.power
 
+        ## return the damage
         return math.floor(((2*level/5 + 2)*power*attack/defense/50 + 2) * modifier)
 
 
-    def receiveDamage(self,damage):
+    def receive_damage(self,damage):
+        """
+            Receive incoming damage from an attack or status afflictions
+
+            Args:
+                damage (float): damage being done
+
+            Returns:
+                None
+
+
+        """
+        ## subtract the damage done from the pokemon's HP
         self.battle_stats['HP'] -= damage
 
+        ## if the heath dip belows 0, set to 0
         if self.battle_stats['HP'] < 0:
             self.battle_stats['HP'] =0
 
 
-    def attack(self,other,moveName):
+    def attack(self,other,move_name):
+        """
+            Attack an opposing Pokemon
 
-        if self.status.canMove():
+            Args:
+                other (Pokemon): Instance of the Pokemon class being attacked by self
+                move_name (str): name of the attack being used on other
 
 
-            move = self.moves[moveName]
+        """
+        ## check if the status allows the Pokemon to attack (e.g. not paralyzed or frozen)
+        if self.status.can_move():
+
+            ## get the Move instance from the self's move dictionary
+            move = self.moves[move_name]
 
 
             ## damaging attack
             if move.category in ['Physical','Special']:
                 #print(self.name + ' used '+ move.name)
-                damage = self.calculateDamage(other,move)
+                damage = self.calculate_damage(other,move)
 
+                ## check if the move misses
                 if not self.miss_attack(other,move):
-                    other.receiveDamage(damage)
+                    other.receive_damage(damage)
 
                     #print(self.name + ' inflicted ' + str(damage) + ' damage')
+
+                    ## check if the move is a ParalyzingMove, BurnMove, Poison move and whether or not the other pokemon is affected
                     if isinstance(move,ParalyzingMove):
-                        if move.doesParalyze() and isinstance(other.status,Normal):
+                        if move.does_paralyze() and isinstance(other.status,Normal):
                             move.paralyze(other)
                             #print(other.name + ' was paralyzed')
                     elif isinstance(move,BurnMove):
-                        if move.doesBurn() and isinstance(other.status,Normal) and 'Fire' not in other.type:
+                        if move.does_burn() and isinstance(other.status,Normal) and 'Fire' not in other.type:
                             move.burn(other)
                             #print(other.name + ' was burned')
 
                     elif isinstance(move,PoisonMove):
-                        if move.doesPoison() and isinstance(other.status,Normal):
+                        if move.does_poison() and isinstance(other.status,Normal):
                             move.poison(other)
                             #print(other.name + ' was poisoned')
 
 
-
+                ## attack is missed
                 else:
                     #print(self.name + ' missed')
                     pass
+
             ## stat changing move
             else:
                 ## targets the opponent pokemon
                 #print(self.name + ' used ' + move.name)
                 if move.target:
                     if not self.miss_attack(other,move):
-                        receiveStatusModifier(other,move)
+                        receive_status_modifier(other,move)
 
                 ## targets self (raises stats)
                 else:
-                    receiveStatusModifier(self,move)
+                    receive_status_modifier(self,move)
 
         else:
             pass
             #print(self.name + ' is fully paralyzed')
 
 
-    def getSpeed(self):
+    def get_speed(self):
+        """
+            Returns the speed of self
+
+            Args:
+                None
+
+            Returns:
+                float, current speed of self
+
+        """
         return self.battle_stats['Speed'][0] * STATSMULTIPLIER[self.battle_stats['Speed'][1]]
 
 
-def receiveStatusModifier(pokemon,move):
+def receive_status_modifier(pokemon,move):
+    """
+        Changes an attribute of a Pokemon
+
+        Args:
+            pokemon (Pokemon): Instance of the Pokemon class whose status is being changed
+            move (Move): Instance of the Move class changing the pokemon's status
+
+        Returns:
+            None
+
+        Notes:
+            Could be turned into a method?
+
+
+    """
+    ## if the move decreases the pokemon's stats
     if move.stages < 0:
+        ## if the status being affected isn't already at it's lowest
         if pokemon.battle_stats[move.affects][1] > -6:
             pokemon.battle_stats[move.affects][1] += move.stages
+
+            ## if the status goes beyond the maximum change, set it to the maximum change
             if pokemon.battle_stats[move.affects][1] < -6:
                 pokemon.battle_stats[move.affects][1] = -6
+    ## increases a pokemon's stats
     else:
+        ## check the status isn't at it's max value
         if pokemon.battle_stats[move.affects][1] < 6:
             pokemon.battle_stats[move.affects][1] += move.stages
+            ## if the status is beyond it's max value, set it to the max value
             if pokemon.battle_stats[move.affects][1] > 6:
                 pokemon.battle_stats[move.affects][1] = 6
