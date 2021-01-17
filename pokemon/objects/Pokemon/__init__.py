@@ -295,7 +295,7 @@ class Pokemon(object):
         rand = random.randint(217,255) / 255
 
         ## return modifier
-        return targets*weather*badge*critical*stab*typeM*rand
+        return targets*weather*badge*critical*stab*type_modifier*rand
 
     def calculate_damage(self,other,move):
         """

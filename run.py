@@ -259,28 +259,25 @@ if __name__ == '__main__':
 
     ## hit rate testing
     ## Expected ~0.004
-
-    #hit_rate_testing()
+    hit_rate_testing()
 
     ## paralysis testing
     ## Expected ~0.1
 
-    #paralysis_testing()
+    paralysis_testing()
 
 
     ## burn testing
     ## Expected ~0.1
+    burn_testing()
 
-    #burn_testing()
 
-
-    #burn_status_affliction()
-    #paralysis_status_affliction()
-    #status_affliction()
+    burn_status_affliction()
+    paralysis_status_affliction()
+    status_affliction()
 
     ## Expected ~0.75
-
-    #paralysis_movement()
+    paralysis_movement()
 
 
     test_battle()
@@ -288,7 +285,7 @@ if __name__ == '__main__':
     test_battles(normalize=True)
     test_battles(normalize=False)
 
-    #test_priority()
+    test_priority()
 
 
 
