@@ -8,16 +8,16 @@
 
 ## import Pokemon objects
 from pokemon.objects.Pokemon import(
-        
+
     Pokemon
-    
+
 )
 
 ## import function for adding moves
 from pokemon.objects.Moves import(
 
-    makeMove
-    
+    make_move
+
 )
 
 
@@ -27,12 +27,8 @@ from pokemon.objects.Status import(
 )
 
 
-## import functions for running battle simulations 
+## import functions for running battle simulations
 from pokemon.objects.Battle import(
      battles
     ,battle
 )
-
-
-
-
