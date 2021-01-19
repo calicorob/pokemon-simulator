@@ -9,4 +9,10 @@ Medium articles written with this code:
 2. https://medium.com/@robert.art.currie/simulating-more-pok%C3%A9mon-battles-3bf100fd476c
 
 ## Directory
+### Home
 * run.py: misc testing of the module 
+### [Original](/Original/) 
+* Contains original notebooks for simulation dev and story writing 
+### [pokemon](/pokemon/)
+* Contains __init__.py of pokemon simulation library
+
