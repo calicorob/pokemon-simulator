@@ -14,6 +14,8 @@ Medium articles written with this code:
 * run.py: misc testing of the module.
 #### Notebooks
 * Story 2 Results.ipynb: Notebook for second story results. 
+#### Other
+* WinPctGraph.png: Win percentages of Pokemon based on run simulations. 
 ### [Original](/Original/) 
 * Contains original notebooks for simulation dev and story writing. 
 ### [pokemon](/pokemon/)
