@@ -1,6 +1,6 @@
 # PokemonSimulator
 ## Author: Robert Currie
-## Last Update: January 13, 2021
+## Last Update: March 19, 2021
 
 This repository holds code used to simulate Gen 1 Pokemon Battles. 
 
@@ -10,9 +10,12 @@ Medium articles written with this code:
 
 ## Directory
 ### Home
-* run.py: misc testing of the module 
+#### Modules
+* run.py: misc testing of the module.
+#### Notebooks
+* Story 2 Results.ipynb: Notebook for second story results. 
 ### [Original](/Original/) 
-* Contains original notebooks for simulation dev and story writing 
+* Contains original notebooks for simulation dev and story writing. 
 ### [pokemon](/pokemon/)
-* Contains __init__.py of pokemon simulation library
+* Contains initialization file of pokemon simulation library.
 
