@@ -1,0 +1,15 @@
+{
+    "pikachu": {
+
+        "type": [ "Electric" ],
+        "base stats": {
+          "HP": 35,
+          "Attack": 55,
+          "Defense": 30,
+          "Speed": 90,
+          "Special": 50
+        }
+
+    }
+
+}
