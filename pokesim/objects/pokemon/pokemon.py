@@ -1,6 +1,6 @@
 # library imports
 from dataclasses import dataclass, field
-from typing import Dict, Callable
+from typing import Dict, Callable,Any
 from os.path import dirname,realpath
 from pathlib import Path
 import json 
@@ -11,6 +11,8 @@ __all__ = ['Pokemon']
 
 
 PokemonStat = Dict[str,int] # TODO: move somewhere else?
+PokemonMove = Any # TODO: add in move 
+PokemonMoveSet = Dict[str,PokemonMove]
 categories = ['attack','defense','speed','special']
 
 file_path = Path(dirname(realpath(__file__)))
@@ -38,14 +40,26 @@ def non_health_stat_equation(level:int, base_stat:int,individual_value:int)->int
 def health_stat_equation(level:int, base_stat:int,individual_value:int)->int:
     return math.floor((base_stat + individual_value)*2 *level/100 + level+10)
 
+def evasion_accuracy_equation()->int:
+    return 1
 
-def generate_stats(level:int,base_stats:PokemonStat,individual_values:PokemonStat,non_health_stat_equation:Callable,health_stat_equation:Callable)->PokemonStat:
+
+def generate_stats(level:int,base_stats:PokemonStat,individual_values:PokemonStat,non_health_stat_equation:Callable,health_stat_equation:Callable,evasion_accuracy_equation:Callable)->PokemonStat:
     
-    _categories = categories + ['health']
-    return {
-        cat: non_health_stat_equation(level=level,base_stat = base_stats[cat],individual_value = individual_values[cat])
-    if cat !='health' else health_stat_equation(level=level,base_stat = base_stats[cat],individual_value = individual_values[cat]) for cat in _categories }
+    _categories = categories + ['health','accuracy','evasion']
+    stats = dict()
+    for cat in _categories:
+        if cat in categories:
+            stats[cat] = non_health_stat_equation(level=level,base_stat=base_stats[cat],individual_value=individual_values[cat])
+        elif cat == 'health':
+            stats[cat] = health_stat_equation(level=level,base_stat = base_stats[cat],individual_value = individual_values[cat])
+        elif cat in ['accuracy','evasion']:
+            stats[cat] = evasion_accuracy_equation()
 
+        else:
+            raise NotImplementedError("%s is not implemented."%cat)
+
+    return stats
 
 pokemon_data = get_pokemon_data()
 
@@ -57,6 +71,7 @@ class Pokemon:
     base_stats : PokemonStat = field(init=False)
     individual_values : PokemonStat = field(init=False)
     stats: PokemonStat = field(init=False)
+    moves:PokemonMoveSet = field(init=False)
 
     def __post_init__(self)->None:
 
@@ -70,8 +85,8 @@ class Pokemon:
             raise KeyError("")
 
         self.individual_values = generate_individual_values()
-        self.stats = generate_stats(level=self.level,base_stats=self.base_stats,individual_values=self.individual_values,health_stat_equation=health_stat_equation,non_health_stat_equation=non_health_stat_equation)
-
+        self.stats = generate_stats(level=self.level,base_stats=self.base_stats,individual_values=self.individual_values,health_stat_equation=health_stat_equation,non_health_stat_equation=non_health_stat_equation,evasion_accuracy_equation=evasion_accuracy_equation)
+        self.moves = dict()
 if __name__ == '__main__':
     
     pikachu = Pokemon(name='pikachu',level=20)
